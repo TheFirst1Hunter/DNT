@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{5FCF1DB2-FC6B-45CD-8E38-4C267817DECB}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DotNetTemplate.Api/Presentation/TodoController.cs">
+    <Files>
+      <File FileName="DotNetTemplate.Core/Entites/Todo/Todo.cs" Line="4" Column="16" />
+      <File FileName="DotNetTemplate.Core/Entites/Todo/TodoTypes.cs" Line="1" Column="1" />
+      <File FileName="DotNetTemplate.Api/Presentation/TodoController.cs" Line="9" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DotNetTemplate" expanded="True">
+            <Node name="DotNetTemplate" expanded="True">
+              <Node name="DotNetTemplate.Api" expanded="True">
+                <Node name="Presentation" expanded="True">
+                  <Node name="TodoController.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="DotNetTemplate.Core" expanded="True">
+                <Node name="Entites" expanded="True">
+                  <Node name="Todo" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.DotNetTemplate PreferredExecutionTarget="/Applications/Arc.app" />
+  <MultiItemStartupConfigurations />
+</Properties>
