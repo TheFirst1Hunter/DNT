@@ -1,0 +1,3 @@
+-   [ ] Implement CQRS
+-   [ ] Add Auth and Permission system
+-   [ ] Create CLI
