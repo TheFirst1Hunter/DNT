@@ -4,10 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DotNetTemplate.Data;
 
-public class TodoConfiguration : IEntityTypeConfiguration<Todo>
+public class TodoDBConfiguration : BaseDBConfiguration
 {
-    public void Configure(EntityTypeBuilder<Todo> builder)
-    {
-        // builder.HasQueryFilter(t => t.DeletedAt == null);
-    }
+
 }

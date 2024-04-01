@@ -1,0 +1,1 @@
+namespace DotNetTemplate.Application.Interfaces;
