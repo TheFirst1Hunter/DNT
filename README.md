@@ -1,5 +1,7 @@
 -   [ ] Implement CQRS
--   [ ] Add Auth and Permission system
+-   [ ] Add Auth
+    -   [ ] Permission system
+    -   [ ] Refresh token
 -   [ ] Create CLI
 -   [ ] Bulk Actions
 -   [ ] Exceptions And Contracts

@@ -29,21 +29,27 @@ where TUpdateDto : BaseUpdateDto, new()
     }
 
     [HttpGet("{id}")]
-    public virtual async Task<ActionResult<TEntitySingleResponse>> GetByIdAsync(TKey id)
+    public virtual async Task<ActionResult<SingleResponseWrapper<TKey, TEntitySingleResponse>>> GetByIdAsync(TKey id)
     {
         TEntitySingleResponse entity = await _readRepository.GetByIdAsync(id);
+
         if (entity == null)
         {
             return NotFound();
         }
 
-        return Ok(entity);
+        SingleResponseWrapper<TKey, TEntitySingleResponse> singleResponse = new SingleResponseWrapper<TKey, TEntitySingleResponse>(entity, "Ok", false);
+
+        return Ok(singleResponse);
     }
 
     [HttpGet]
-    public virtual async Task<ActionResult<TEntityListResponse>> GetAllAsync([FromQuery] TQueryFilter queryFilter)
+    public virtual async Task<ActionResult<PaginatedResponseWrapper<TKey, TEntityListResponse>>> GetAllAsync([FromQuery] TQueryFilter queryFilter)
     {
         var entities = await _readRepository.ListAsync(queryFilter);
+
+        PaginatedResponseWrapper<TKey, TEntityListResponse> paginatedResponse = new PaginatedResponseWrapper<TKey, TEntityListResponse>(entities.Data, entities.Count, queryFilter.Skip, queryFilter.Take);
+
         return Ok(entities);
     }
 

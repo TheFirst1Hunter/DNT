@@ -27,16 +27,21 @@ namespace DotNetTemplate.Data.Repository
         {
             _context = context;
         }
-        public virtual async Task<List<TEntityListResponse>> ListAsync(TQueryFilter queryFilter)
+        public virtual async Task<CountRepositoryWrapper<TKey, TEntityListResponse>> ListAsync(TQueryFilter queryFilter)
         {
-            List<TEntityListResponse> entities = await _context
+            IQueryable<TEntityListResponse> entityQuery = _context
                                                               .Set<TEntity>()
-                                                              .Select(e => new TEntityListResponse { Id = e.Id })
-                                                              .Skip(queryFilter.Skip)
+                                                              .Select(e => new TEntityListResponse { Id = e.Id });
+
+            List<TEntityListResponse> entities = await entityQuery.Skip(queryFilter.Skip)
                                                               .Take(queryFilter.Take)
                                                               .AsNoTracking()
                                                               .ToListAsync();
-            return entities;
+            int count = await entityQuery.CountAsync();
+
+            CountRepositoryWrapper<TKey, TEntityListResponse> countedEntities = new CountRepositoryWrapper<TKey, TEntityListResponse>(entities, count);
+
+            return countedEntities;
         }
 
         public virtual async Task<TEntitySingleResponse> GetByIdAsync(TKey id)

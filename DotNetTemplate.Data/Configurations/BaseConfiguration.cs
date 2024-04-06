@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DotNetTemplate.Data;
 
-public class BaseDBConfiguration : IEntityTypeConfiguration<BaseEntity<Guid>>
+public class BaseDBConfiguration<T> : IEntityTypeConfiguration<T> where T : BaseEntity<Guid>
 {
-    public void Configure(EntityTypeBuilder<BaseEntity<Guid>> builder)
+    public virtual void Configure(EntityTypeBuilder<T> builder)
     {
         builder.HasQueryFilter(t => t.DeletedAt == null);
     }

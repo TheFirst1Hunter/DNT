@@ -30,11 +30,16 @@ public class HashService : IHashService
         return Convert.ToBase64String(saltBytes);
     }
 
-    public bool ValidateHash(string data, string hashedData)
+    public bool ValidateHash(string data, string hashedData, string salt)
     {
-        string salt = this.GenerateSalt();
-
         string newHashedData = this.HashString(data, salt);
+
+        Console.WriteLine("------------------------");
+        Console.WriteLine("old:");
+        Console.WriteLine(hashedData);
+        Console.WriteLine("new:");
+        Console.WriteLine(newHashedData);
+        Console.WriteLine("------------------------");
 
         return newHashedData == hashedData;
     }

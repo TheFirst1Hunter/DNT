@@ -27,7 +27,7 @@ namespace DotNetTemplate.Data.Repository
 
         public async Task<User> GetUserAsync(string username)
         {
-            User? user = await _context.Users.FirstOrDefaultAsync(u => u.GetUsername() == username);
+            User? user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
 
             if (user == null)
             {

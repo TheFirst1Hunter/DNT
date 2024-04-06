@@ -41,6 +41,7 @@ public class DotNetTemplateDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new TodoDBConfiguration());
+        modelBuilder.ApplyConfiguration(new UserDBConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

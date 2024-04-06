@@ -11,6 +11,6 @@ where TQueryFilter : BaseFilter, new()
 where TEntityListResponse : BaseListDto<TKey>, new()
 where TEntitySingleResponse : BaseSingleDto<TKey>, new()
 {
-    Task<List<TEntityListResponse>> ListAsync(TQueryFilter queryFilter);
+    Task<CountRepositoryWrapper<TKey, TEntityListResponse>> ListAsync(TQueryFilter queryFilter);
     Task<TEntitySingleResponse> GetByIdAsync(TKey id);
 }

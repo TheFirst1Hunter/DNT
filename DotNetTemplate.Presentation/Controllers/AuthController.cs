@@ -36,15 +36,7 @@ public class AuthController : ControllerBase
     [HttpPost("/Register")]
     public async Task<ActionResult<RegisterUserResponse>> RegisterUser([FromBody] RegisterUserRequest registerUserRequest)
     {
-        string hashedPassword = _hashService.HashString(registerUserRequest.Password, _hashService.GenerateSalt());
-
-        User newUser = new User(registerUserRequest.Username, hashedPassword);
-
-        User userEntity = await _writeRepository.RegisterUserAsync(newUser);
-
-        string token = _tokenService.GenerateToken(userEntity);
-
-        RegisterUserResponse registerUserResponse = new RegisterUserResponse(userEntity.GetUsername(), "", token, token);
+        RegisterUserResponse registerUserResponse = await _userService.RegisterService(registerUserRequest.Username, registerUserRequest.Password);
 
         return Ok(registerUserResponse);
     }

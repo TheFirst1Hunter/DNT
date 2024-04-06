@@ -1,5 +1,4 @@
 using System;
-using DotNetTemplate.Core.DTOs;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Core.Filters;
 
