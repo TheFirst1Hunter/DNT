@@ -7,3 +7,5 @@
 -   [ ] Exceptions And Contracts
 -   [ ] Global Error Handler
 -   [ ] Response Wrappers
+-   [ ] Logger
+-   [ ] Auditing

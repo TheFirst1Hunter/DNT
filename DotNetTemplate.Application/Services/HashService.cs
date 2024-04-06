@@ -34,13 +34,6 @@ public class HashService : IHashService
     {
         string newHashedData = this.HashString(data, salt);
 
-        Console.WriteLine("------------------------");
-        Console.WriteLine("old:");
-        Console.WriteLine(hashedData);
-        Console.WriteLine("new:");
-        Console.WriteLine(newHashedData);
-        Console.WriteLine("------------------------");
-
         return newHashedData == hashedData;
     }
 }
