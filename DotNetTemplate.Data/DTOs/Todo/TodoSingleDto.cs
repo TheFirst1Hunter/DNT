@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotNetTemplate.Presentation.DTOs;
+namespace DotNetTemplate.Data.DTOs;
 
-public class TodoListDto : BaseListDto<Guid>
+public class TodoSingleDto : BaseSingleDto<Guid>
 {
     public string Title { set; get; }
 

@@ -1,3 +1,4 @@
+using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Presentation.DTOs;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Core.Filters;

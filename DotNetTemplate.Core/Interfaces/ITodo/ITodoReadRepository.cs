@@ -1,5 +1,5 @@
 using System;
-using DotNetTemplate.Presentation.DTOs;
+using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Core.Filters;
 

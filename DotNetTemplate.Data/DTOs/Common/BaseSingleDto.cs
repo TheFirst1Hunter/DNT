@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotNetTemplate.Presentation.DTOs;
+namespace DotNetTemplate.Data.DTOs;
 
 public class BaseSingleDto<TKey>
 {

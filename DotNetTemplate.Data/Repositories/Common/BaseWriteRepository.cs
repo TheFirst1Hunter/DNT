@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using AutoMapper;
-using DotNetTemplate.Presentation.DTOs;
+using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Core.Filters;
 using DotNetTemplate.Core.Interfaces;

@@ -2,7 +2,7 @@ using System;
 using DotNetTemplate.Data;
 using DotNetTemplate.Data.Repository;
 using DotNetTemplate.Core.Interfaces;
-using DotNetTemplate.Presentation.DTOs;
+using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Core.Filters;
 using AutoMapper;

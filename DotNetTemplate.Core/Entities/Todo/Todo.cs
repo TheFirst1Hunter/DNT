@@ -3,6 +3,14 @@ namespace DotNetTemplate.Core.Entities;
 
 public class Todo : BaseEntity<Guid>
 {
-    public string Title { set; get; }
-    public string Content { set; get; }
+    private string Title { set; get; }
+    private string Content { set; get; }
+
+    public Todo() { }
+
+    public Todo(string title, string content)
+    {
+        this.Title = title;
+        this.Content = content;
+    }
 }

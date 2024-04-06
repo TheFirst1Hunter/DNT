@@ -2,7 +2,7 @@ using AutoMapper;
 using DotNetTemplate.Core.Entities;
 using DotNetTemplate.Presentation.DTOs;
 
-namespace DotNetTemplate.Mapper;
+namespace DotNetTemplate.Presentation.Mapper;
 
 public class AnswerProfile : Profile
 {
