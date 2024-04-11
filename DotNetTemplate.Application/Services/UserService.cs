@@ -9,6 +9,7 @@ using DotNetTemplate.Core.Interfaces;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.IdentityModel.Tokens;
 using DotNetTemplate.Core.Exceptions;
+using DotNetTemplate.Application.Auth.Roles;
 
 namespace DotNetTemplate.Application.Services;
 
@@ -45,7 +46,7 @@ public class UserService : IUserService
 
         string token = _tokenService.GenerateToken(u);
 
-        return new LoginUserResponse(u.GetUsername(), "", token, token);
+        return new LoginUserResponse(u.GetUsername(), "", token, token, u.GetRole());
     }
 
     public async Task<RegisterUserResponse> RegisterService(string username, string password)
@@ -54,13 +55,13 @@ public class UserService : IUserService
 
         string hashedPassword = _hashService.HashString(password, salt);
 
-        User newUser = new User(username, hashedPassword, salt);
+        User newUser = new User(username, hashedPassword, salt, Roles.User);
 
         User userEntity = await _writeRepository.RegisterUserAsync(newUser);
 
         string token = _tokenService.GenerateToken(userEntity);
 
-        RegisterUserResponse registerUserResponse = new RegisterUserResponse(userEntity.GetUsername(), "", token, token);
+        RegisterUserResponse registerUserResponse = new RegisterUserResponse(userEntity.GetUsername(), "", token, token, Roles.User);
 
         return registerUserResponse;
     }

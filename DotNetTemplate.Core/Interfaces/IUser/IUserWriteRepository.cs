@@ -8,4 +8,6 @@ namespace DotNetTemplate.Core.Interfaces;
 public interface IUserWriteRepository
 {
     Task<User> RegisterUserAsync(User user);
+    Task<User> UpdateUserPermissionsAsync(Guid userId, List<string> permissions);
+
 }

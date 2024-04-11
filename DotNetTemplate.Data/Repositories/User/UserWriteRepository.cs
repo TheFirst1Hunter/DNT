@@ -12,24 +12,40 @@ using DotNetTemplate.Core.Interfaces;
 using DotNetTemplate.Core.Exceptions;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotNetTemplate.Data.Repository
+namespace DotNetTemplate.Data.Repository;
+
+public class UserWriteRepository : IUserWriteRepository
 {
-    public class UserWriteRepository : IUserWriteRepository
+    private readonly DotNetTemplateDbContext _context;
+
+    public UserWriteRepository(DotNetTemplateDbContext context)
     {
-        private readonly DotNetTemplateDbContext _context;
+        _context = context;
+    }
 
-        public UserWriteRepository(DotNetTemplateDbContext context)
+    public async Task<User> RegisterUserAsync(User user)
+    {
+        User u = (await _context.Users.AddAsync(user)).Entity;
+
+        await _context.SaveChangesAsync();
+
+        return u;
+    }
+
+    public async Task<User> UpdateUserPermissionsAsync(Guid userId, List<string> permissions)
+    {
+        User? u = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (u == null)
         {
-            _context = context;
+            throw new EntityNotFoundException(userId, nameof(User));
         }
 
-        public async Task<User> RegisterUserAsync(User user)
-        {
-            User u = (await _context.Users.AddAsync(user)).Entity;
+        u.SetPermissions(permissions);
 
-            await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
-            return u;
-        }
+        return u;
     }
 }
+

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DotNetTemplate.Application.Auth.Policies;
+using DotNetTemplate.Application.Auth.Roles;
 
 namespace DotNetTemplate.Application.Extensions;
 
@@ -27,6 +29,14 @@ public static class AuthExtension
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtAuthKey))
         };
     });
+
+        builder.Services.AddAuthorization(options =>
+        {
+            TodoPolicy todoPolicy = new TodoPolicy();
+
+            options.AddPolicy(nameof(BasePolicy), policy => policy.RequireRole(Roles.Admin));
+            options.AddBasePolicies<TodoPolicy>(todoPolicy);
+        });
 
         return builder;
     }

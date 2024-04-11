@@ -6,6 +6,7 @@ using DotNetTemplate.Data;
 using DotNetTemplate.Presentation.Extensions;
 using DotNetTemplate.Application.Extensions;
 using DotNetTemplate.Infrastructure.Middleware;
+using DotNetTemplate.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,13 +21,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 
-builder.Services.AddTransient<ITodoReadRepository, TodoReadRepository>();
-builder.Services.AddTransient<ITodoWriteRepository, TodoWriteRepository>();
-builder.Services.AddTransient<IUserReadRepository, UserReadRepository>();
-builder.Services.AddTransient<IUserWriteRepository, UserWriteRepository>();
-builder.Services.AddTransient<IHashService, HashService>();
-builder.Services.AddTransient<ITokenService, TokenService>();
-builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 
 
 builder.AddJWTAuth();
