@@ -7,7 +7,7 @@ public class LogModel
     public DateTime? Timestamp { get; set; }
     public string? UserId { get; set; }
     public string? UserName { get; set; }
-    public long? ResponseTimeInMilliseconds { get; set; }
+    public TimeSpan? ResponseTimeInMilliseconds { get; set; }
     public RequestModel? Request { get; set; }
     public ResponseModel? Response { get; set; }
     // Add more properties as needed to track additional information

@@ -25,6 +25,7 @@ namespace DotNetTemplate.Infrastructure.Middleware
 
         public async Task Invoke(HttpContext context)
         {
+            var startTime = DateTime.UtcNow;
             // Copy pointer to the original response body stream
             var originalBodyStream = context.Response.Body;
 
@@ -41,6 +42,7 @@ namespace DotNetTemplate.Infrastructure.Middleware
 
                 // Format the response from the server
                 logModel.Response = await GetResponseModelAsync(context.Response);
+                logModel.ResponseTimeInMilliseconds = DateTime.UtcNow - startTime;
 
                 // Log the log model
                 _logger.LogInformation("{@LogModel}", logModel);
