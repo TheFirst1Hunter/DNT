@@ -6,6 +6,7 @@ using AutoMapper;
 using DotNetTemplate.Application.Interfaces;
 using DotNetTemplate.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using DotNetTemplate.Application.Auth.Roles;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -38,6 +39,7 @@ public class AuthController : ControllerBase
         return (userResponse);
     }
 
+    [Authorize(Roles = Roles.Admin)]
     [HttpPut("/{id}/Permissions")]
     public async Task<ActionResult> UpdateUserPermissions([FromRoute] Guid id, [FromBody] UpdateUserPermissionRequest updateUserPermissionsRequest)
     {
@@ -45,6 +47,4 @@ public class AuthController : ControllerBase
 
         return Ok();
     }
-
-
 }
