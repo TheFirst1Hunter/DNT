@@ -1,4 +1,4 @@
-using DotNetTemplate.Core.Interfaces;
+using DotNetTemplate.Data.Interfaces;
 using DotNetTemplate.Data.Repository;
 
 namespace DotNetTemplate.Data.Extensions;
