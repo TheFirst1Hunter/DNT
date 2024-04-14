@@ -113,3 +113,13 @@
 /Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.AspNetCore.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Extensions.Hosting.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Formatting.Compact.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Settings.Configuration.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Sinks.Console.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Sinks.Debug.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Serilog.Sinks.File.dll
+/Users/abdullaa_taha/Desktop/coding/DotNetTemplate/bin/Debug/net8.0/Newtonsoft.Json.dll
