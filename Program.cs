@@ -1,12 +1,10 @@
-using DotNetTemplate.Core.Interfaces;
-using DotNetTemplate.Data.Repository;
-using DotNetTemplate.Application.Interfaces;
-using DotNetTemplate.Application.Services;
 using DotNetTemplate.Data;
 using DotNetTemplate.Presentation.Extensions;
 using DotNetTemplate.Application.Extensions;
 using DotNetTemplate.Infrastructure.Middleware;
 using DotNetTemplate.Data.Extensions;
+using DotNetTemplate.Infrastructure.Logger;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<DotNetTemplateDbContext>();
 
@@ -24,6 +23,7 @@ builder.Services.AddControllers();
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 
+builder.UseSerilogLogging();
 
 builder.AddJWTAuth();
 
@@ -36,12 +36,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<HttpLoggingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

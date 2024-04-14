@@ -11,12 +11,12 @@ namespace DotNetTemplate.Infrastructure.Middleware;
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;
-    // private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+    private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-    public ExceptionHandlingMiddleware(RequestDelegate next)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
         _next = next;
-        // _logger = logger;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -97,12 +97,12 @@ public class ExceptionHandlingMiddleware
                 errorResponse.Message = ex.InnerException?.Message;
                 break;
             default:
-                // _logger.LogError(exception.Message);
-                // response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                // errorResponse.Message = "Internal server error!";
+                _logger.LogError(exception.Message);
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                errorResponse.Message = "Internal server error!";
                 break;
         }
-        // _logger.LogError(exception.Message);
+        _logger.LogError(exception.Message);
         var result = JsonSerializer.Serialize(errorResponse);
         await context.Response.WriteAsync(result);
     }
