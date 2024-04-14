@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DotNetTemplate.Presentation.DTOs;
 
-public class LoginUserRequest
+public class LoginUserDto
 {
     [Required]
     public string Username { set; get; }

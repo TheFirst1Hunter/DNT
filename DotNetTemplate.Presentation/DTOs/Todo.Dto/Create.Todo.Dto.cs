@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DotNetTemplate.Presentation.DTOs;
 
-public class CreateTodoDto : BaseCreateDto
+public class CreateTodoDto : CreateBaseDto
 {
     [Required]
     public string Title { set; get; }

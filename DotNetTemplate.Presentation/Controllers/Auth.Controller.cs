@@ -24,24 +24,24 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Register")]
-    public async Task<ActionResult<RegisterUserResponse>> RegisterUser([FromBody] RegisterUserRequest registerUserRequest)
+    public async Task<ActionResult<RegisterUserResponse>> RegisterUser([FromBody] RegisterUserDto RegisterUserDto)
     {
-        RegisterUserResponse registerUserResponse = await _userService.RegisterService(registerUserRequest.Username, registerUserRequest.Password);
+        RegisterUserResponse registerUserResponse = await _userService.RegisterService(RegisterUserDto.Username, RegisterUserDto.Password);
 
         return (registerUserResponse);
     }
 
     [HttpPost("/Login")]
-    public async Task<ActionResult<LoginUserResponse>> LoginUser([FromBody] LoginUserRequest loginUserRequest)
+    public async Task<ActionResult<LoginUserResponse>> LoginUser([FromBody] LoginUserDto LoginUserDto)
     {
-        LoginUserResponse userResponse = await _userService.LoginService(loginUserRequest.Username, loginUserRequest.Password);
+        LoginUserResponse userResponse = await _userService.LoginService(LoginUserDto.Username, LoginUserDto.Password);
 
         return (userResponse);
     }
 
     [Authorize(Roles = Roles.Admin)]
     [HttpPut("/{id}/Permissions")]
-    public async Task<ActionResult> UpdateUserPermissions([FromRoute] Guid id, [FromBody] UpdateUserPermissionRequest updateUserPermissionsRequest)
+    public async Task<ActionResult> UpdateUserPermissions([FromRoute] Guid id, [FromBody] UpdateUserPermissionDto updateUserPermissionsRequest)
     {
         await _writeRepository.UpdateUserPermissionsAsync(id, updateUserPermissionsRequest.Permissions);
 

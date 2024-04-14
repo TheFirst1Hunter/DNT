@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DotNetTemplate.Presentation.DTOs;
 
-public class BaseCreateDto
+public class UpdateBaseDto
 {
 
 }

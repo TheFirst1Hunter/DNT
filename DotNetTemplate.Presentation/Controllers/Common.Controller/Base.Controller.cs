@@ -11,8 +11,8 @@ where TEntity : BaseEntity<TKey>, new()
 where TQueryFilter : BaseFilter, new()
 where TEntityListResponse : BaseListDto<TKey>, new()
 where TEntitySingleResponse : BaseSingleDto<TKey>, new()
-where TCreateDto : BaseCreateDto, new()
-where TUpdateDto : BaseUpdateDto, new()
+where TCreateDto : CreateBaseDto, new()
+where TUpdateDto : UpdateBaseDto, new()
     // where TRepository : IBaseRepository<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilter, TCreateDto, TUpdateDto>
 {
     private readonly IBaseReadRepository<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilter> _readRepository;

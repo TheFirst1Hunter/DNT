@@ -5,4 +5,4 @@ using DotNetTemplate.Presentation.Filters;
 
 namespace DotNetTemplate.Data.Interfaces;
 
-public interface ITodoReadRepository : IBaseReadRepository<Guid, Todo, TodoSingleDto, TodoListDto, TodoFilter> { }
+public interface ITodoReadRepository : IBaseReadRepository<Guid, Todo, SingleTodoDto, ListTodoDto, TodoFilter> { }
