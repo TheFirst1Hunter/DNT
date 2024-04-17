@@ -1,4 +1,4 @@
-.
+```
 ├── DotNetTemplate.Application
 │   ├── Auth
 │   │   ├── Polices.Auth
@@ -128,3 +128,4 @@
 ├── README.md
 ├── appsettings.Development.json
 └── appsettings.json
+```
