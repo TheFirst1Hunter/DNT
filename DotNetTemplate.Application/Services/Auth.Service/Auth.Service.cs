@@ -13,14 +13,14 @@ using DotNetTemplate.Application.Auth.Roles;
 
 namespace DotNetTemplate.Application.Services;
 
-public class UserService : IUserService
+public class AuthService : IAuthService
 {
     private readonly IUserReadRepository _readRepository;
     private readonly IUserWriteRepository _writeRepository;
     private readonly IHashService _hashService;
     private readonly ITokenService _tokenService;
 
-    public UserService(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IHashService hashService, ITokenService tokenService)
+    public AuthService(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IHashService hashService, ITokenService tokenService)
     {
         _readRepository = userReadRepository;
         _writeRepository = userWriteRepository;
@@ -33,7 +33,7 @@ public class UserService : IUserService
         return _hashService.ValidateHash(incomingPassword, user.Password, user.Salt);
     }
 
-    public async Task<LoginUserResponse> LoginService(string incomingUsername, string incomingPassword)
+    public async Task<LoginUserResponse> LoginServiceAsync(string incomingUsername, string incomingPassword)
     {
         User u = await _readRepository.GetUserAsync(incomingUsername);
 
@@ -44,12 +44,12 @@ public class UserService : IUserService
             throw new InvalidCredentialsExceptions();
         }
 
-        string token = _tokenService.GenerateToken(u);
+        var (access, refresh) = _tokenService.GenerateToken(u);
 
-        return new LoginUserResponse(u.GetUsername(), "", token, token, u.GetRole());
+        return new LoginUserResponse(u.GetUsername(), "", access, refresh, u.GetRole());
     }
 
-    public async Task<RegisterUserResponse> RegisterService(string username, string password)
+    public async Task<RegisterUserResponse> RegisterServiceAsync(string username, string password)
     {
         string salt = _hashService.GenerateSalt();
 
@@ -59,9 +59,9 @@ public class UserService : IUserService
 
         User userEntity = await _writeRepository.RegisterUserAsync(newUser);
 
-        string token = _tokenService.GenerateToken(userEntity);
+        var (access, refresh) = _tokenService.GenerateToken(userEntity);
 
-        RegisterUserResponse registerUserResponse = new RegisterUserResponse(userEntity.GetUsername(), "", token, token, Roles.User);
+        RegisterUserResponse registerUserResponse = new RegisterUserResponse(userEntity.GetUsername(), "", access, refresh, Roles.User);
 
         return registerUserResponse;
     }

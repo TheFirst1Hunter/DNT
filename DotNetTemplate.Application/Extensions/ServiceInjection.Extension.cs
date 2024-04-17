@@ -17,7 +17,7 @@ public static class ServiceExtensions
     {
         service.AddTransient<IHashService, HashService>();
         service.AddTransient<ITokenService, TokenService>();
-        service.AddTransient<IUserService, UserService>();
+        service.AddTransient<IAuthService, AuthService>();
         return service;
     }
 }

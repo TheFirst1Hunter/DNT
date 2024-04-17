@@ -1,8 +1,8 @@
 using System;
 
-namespace DotNetTemplate.Presentation.Filters;
+namespace DotNetTemplate.Presentation.DTOs;
 
-public class BaseFilter
+public class BaseQueryDto
 {
     public int Skip { set; get; } = 0;
     public int Take { set; get; } = 10;

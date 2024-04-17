@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using AutoMapper;
 using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Core.Entities;
-using DotNetTemplate.Presentation.Filters;
 using DotNetTemplate.Data.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using DotNetTemplate.Core.Exceptions;
 
 namespace DotNetTemplate.Data.Repository
 {
     public class BaseReadRepository<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilter> : IBaseReadRepository<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilter>
       where TKey : IEquatable<TKey>
       where TEntity : BaseEntity<TKey>, new()
-      where TQueryFilter : BaseFilter, new()
+      where TQueryFilter : BaseQuery, new()
       where TEntityListResponse : BaseListDto<TKey>, new()
       where TEntitySingleResponse : BaseSingleDto<TKey>, new()
 
@@ -53,7 +53,7 @@ namespace DotNetTemplate.Data.Repository
                                                          .FirstOrDefaultAsync(e => e.Id.ToString() == id.ToString());
             if (entity == null)
             {
-                throw new KeyNotFoundException($"Entity with ID '{id}' not found.");
+                throw new EntityNotFoundException<TKey>(id, typeof(TEntity).Name);
             }
 
             return entity;

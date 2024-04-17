@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using AutoMapper;
 using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Core.Entities;
-using DotNetTemplate.Presentation.Filters;
 using DotNetTemplate.Data.Interfaces;
 using System.ComponentModel.DataAnnotations;
 

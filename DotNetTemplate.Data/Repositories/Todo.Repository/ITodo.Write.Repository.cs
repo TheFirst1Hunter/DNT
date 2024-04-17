@@ -1,6 +1,6 @@
 using System;
 using DotNetTemplate.Core.Entities;
-using DotNetTemplate.Presentation.Filters;
+using DotNetTemplate.Presentation.DTOs;
 
 namespace DotNetTemplate.Data.Interfaces;
 

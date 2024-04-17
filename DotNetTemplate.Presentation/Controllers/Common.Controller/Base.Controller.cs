@@ -1,14 +1,15 @@
 using DotNetTemplate.Data.DTOs;
 using DotNetTemplate.Presentation.DTOs;
 using DotNetTemplate.Core.Entities;
-using DotNetTemplate.Presentation.Filters;
+// using 
 using DotNetTemplate.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 
-public class BaseController<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilter, TCreateDto, TUpdateDto> : ControllerBase
+public class BaseController<TKey, TEntity, TEntitySingleResponse, TEntityListResponse, TQueryFilterDto, TQueryFilter, TCreateDto, TUpdateDto> : ControllerBase
 where TEntity : BaseEntity<TKey>, new()
-where TQueryFilter : BaseFilter, new()
+where TQueryFilter : BaseQuery, new()
+where TQueryFilterDto : BaseQueryDto, new()
 where TEntityListResponse : BaseListDto<TKey>, new()
 where TEntitySingleResponse : BaseSingleDto<TKey>, new()
 where TCreateDto : CreateBaseDto, new()
@@ -44,13 +45,15 @@ where TUpdateDto : UpdateBaseDto, new()
     }
 
     [HttpGet]
-    public virtual async Task<ActionResult<PaginatedResponseWrapper<TKey, TEntityListResponse>>> GetAllAsync([FromQuery] TQueryFilter queryFilter)
+    public virtual async Task<ActionResult<PaginatedResponseWrapper<TKey, TEntityListResponse>>> GetAllAsync([FromQuery] TQueryFilterDto queryFilter)
     {
-        var entities = await _readRepository.ListAsync(queryFilter);
+        TQueryFilter query = _mapper.Map<TQueryFilter>(queryFilter);
+
+        var entities = await _readRepository.ListAsync(query);
 
         PaginatedResponseWrapper<TKey, TEntityListResponse> paginatedResponse = new PaginatedResponseWrapper<TKey, TEntityListResponse>(entities.Data, entities.Count, queryFilter.Skip, queryFilter.Take);
 
-        return Ok(entities);
+        return Ok(paginatedResponse);
     }
 
     [HttpPost]
