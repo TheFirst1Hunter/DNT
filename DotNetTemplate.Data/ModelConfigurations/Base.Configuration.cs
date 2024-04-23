@@ -8,6 +8,6 @@ public class BaseDBConfiguration<T> : IEntityTypeConfiguration<T> where T : Base
 {
     public virtual void Configure(EntityTypeBuilder<T> builder)
     {
-        builder.HasQueryFilter(t => t.DeletedAt == null);
+        builder.HasQueryFilter(t => t.IsDeleted == false);
     }
 }

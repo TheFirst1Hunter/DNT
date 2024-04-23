@@ -1,10 +1,10 @@
 using System;
 namespace DotNetTemplate.Core.Entities;
 
-public class Todo : BaseEntity<Guid>
+public class Todo : BaseEntity<Guid>, IAuditedEntity<Guid>
 {
-    private string Title { set; get; }
-    private string Content { set; get; }
+    public string Title { set; get; }
+    public string Content { set; get; }
 
     public Todo() { }
 

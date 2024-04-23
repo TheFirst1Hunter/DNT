@@ -20,8 +20,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 
-builder.Services.AddRepositories();
 builder.Services.AddServices();
+builder.Services.AddRepositories();
 
 builder.UseSerilogLogging();
 
@@ -44,7 +44,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseMiddleware<HttpLoggingMiddleware>();
+// app.UseMiddleware<HttpLoggingMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();

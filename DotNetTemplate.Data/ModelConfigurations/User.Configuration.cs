@@ -9,6 +9,6 @@ public class UserDBConfiguration : BaseDBConfiguration<User>
     public override void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("Users");
-        builder.HasQueryFilter(t => t.DeletedAt == null);
+        builder.HasQueryFilter(t => t.IsDeleted == false);
     }
 }

@@ -8,7 +8,7 @@ public class TodoDBConfiguration : BaseDBConfiguration<Todo>
 {
     public override void Configure(EntityTypeBuilder<Todo> builder)
     {
-        builder.HasQueryFilter(t => t.DeletedAt == null);
+        builder.HasQueryFilter(t => t.IsDeleted == false);
         builder.ToTable("Todos");
     }
 }
