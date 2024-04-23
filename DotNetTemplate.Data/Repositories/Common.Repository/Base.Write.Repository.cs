@@ -41,7 +41,7 @@ namespace DotNetTemplate.Data.Repository
             }
 
             // Get key properties for both instances
-            var existingKeys = existing.GetType().GetProperties().ToList();
+            var existingKeys = existing.GetType().GetProperties().Where(p => p.Name != "Id").ToList();
             var updateDtoKeys = entity.GetType().GetProperties().ToList();
 
             // Compare and replace matching keys

@@ -35,6 +35,7 @@ namespace DotNetTemplate.Data.Repository
 
             List<TEntityListResponse> entities = await entityQuery.Skip(queryFilter.Skip)
                                                               .Take(queryFilter.Take)
+                                                              .OrderByDescending(e => e.CreatedAt)
                                                               .AsNoTracking()
                                                               .ToListAsync();
             int count = await entityQuery.CountAsync();
